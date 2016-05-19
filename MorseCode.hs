@@ -11,7 +11,7 @@ https://www.youtube.com/watch?v=nVkLr0GyJPI
 (2:55 showing spacing)
 -}
 
-data Element = Dot | Dash | IntraWordSpace | InterWordSpace
+data Element = Dot | Dash | InterCharSpace | InterWordSpace
   deriving (Eq, Show)
 type Elements = [Element]
 
@@ -50,8 +50,11 @@ spacingInterWord = replicate 7 False
 elementToCharacter :: Element -> Char
 elementToCharacter = undefined
 
-elementToCode :: Element -> Code
-elementToCode = undefined
+elementToCodes :: Element -> Codes
+elementToCodes Dot = dot
+elementToCodes Dash = dash
+elementToCodes InterCharSpace = spacingInterChar
+elementToCodes InterWordSpace = spacingInterWord
 
 codeToElement :: Code -> Element
 codeToElement = undefined
@@ -59,7 +62,7 @@ codeToElement = undefined
 --Based on the above.
 
 characterToCodes :: Char -> Codes
-characterToCodes = (map elementToCode) . characterToElements
+characterToCodes = concat . (map elementToCodes) . characterToElements
 
 codeToCharacter :: Code -> Char
 codeToCharacter = elementToCharacter . codeToElement
@@ -72,10 +75,14 @@ charactersToElements = concat . (map characterToElements)
 elementsToMessage :: Elements -> String
 elementsToMessage = map elementToCharacter
 
+messageToCodes :: String -> Codes
+messageToCodes = concat . (map characterToCodes)
+
 main :: IO ()
 main = do
     putStrLn "Morse Code application:"
     putStrLn $ message
     print $ charactersToElements message
+    print $ messageToCodes message
   where
     message = "SOS"
