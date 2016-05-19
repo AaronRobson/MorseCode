@@ -12,6 +12,7 @@ https://www.youtube.com/watch?v=nVkLr0GyJPI
 -}
 
 data Element = Dot | Dash | WordSpace
+  deriving (Eq, Show)
 type Elements = [Element]
 
 type Code = Bool
@@ -26,7 +27,9 @@ isAllowedChar = (`elem` allowedChars)
 --todo simplify with: http://book.realworldhaskell.org/read/using-typeclasses.html
 
 characterToElements :: Char -> Elements
-characterToElements = undefined
+characterToElements ' ' = [WordSpace]
+characterToElements 'O' = [Dot,Dot,Dot]
+characterToElements 'S' = [Dash,Dash,Dash]
 
 elementToCharacter :: Element -> Char
 elementToCharacter = undefined
@@ -70,4 +73,9 @@ spacingBetweenWords :: [Bool]
 spacingBetweenWords = replicate 7 False
 
 main :: IO ()
-main = do putStrLn "Morse Code application"
+main = do
+    putStrLn "Morse Code application:"
+    putStrLn $ message
+    print $ charactersToElements message
+  where
+    message = "SOS"
