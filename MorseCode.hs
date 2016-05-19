@@ -31,6 +31,22 @@ characterToElements ' ' = [InterWordSpace]
 characterToElements 'O' = [Dot,Dot,Dot]
 characterToElements 'S' = [Dash,Dash,Dash]
 
+--All signals based relative to a single beat (length of a "dot").
+dot :: [Bool]
+dot = replicate 1 True
+
+dash :: [Bool]
+dash = replicate 3 True
+
+spacingBetweenElements :: [Bool]
+spacingBetweenElements = replicate 1 False
+
+spacingBetweenCharacters :: [Bool]
+spacingBetweenCharacters = replicate 3 False
+
+spacingBetweenWords :: [Bool]
+spacingBetweenWords = replicate 7 False
+
 elementToCharacter :: Element -> Char
 elementToCharacter = undefined
 
@@ -55,22 +71,6 @@ charactersToElements = concat . (map characterToElements)
 
 elementsToMessage :: Elements -> String
 elementsToMessage = map elementToCharacter
-
---All signals based relative to a single beat (length of a "dot").
-dot :: [Bool]
-dot = replicate 1 True
-
-dash :: [Bool]
-dash = replicate 3 True
-
-spacingBetweenElements :: [Bool]
-spacingBetweenElements = replicate 1 False
-
-spacingBetweenCharacters :: [Bool]
-spacingBetweenCharacters = replicate 3 False
-
-spacingBetweenWords :: [Bool]
-spacingBetweenWords = replicate 7 False
 
 main :: IO ()
 main = do
