@@ -11,7 +11,7 @@ https://www.youtube.com/watch?v=nVkLr0GyJPI
 (2:55 showing spacing)
 -}
 
-data Element = Dot | Dash | WordSpace
+data Element = Dot | Dash | IntraWordSpace | InterWordSpace
   deriving (Eq, Show)
 type Elements = [Element]
 
@@ -27,7 +27,7 @@ isAllowedChar = (`elem` allowedChars)
 --todo simplify with: http://book.realworldhaskell.org/read/using-typeclasses.html
 
 characterToElements :: Char -> Elements
-characterToElements ' ' = [WordSpace]
+characterToElements ' ' = [InterWordSpace]
 characterToElements 'O' = [Dot,Dot,Dot]
 characterToElements 'S' = [Dash,Dash,Dash]
 
