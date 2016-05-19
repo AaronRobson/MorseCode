@@ -11,6 +11,8 @@ https://www.youtube.com/watch?v=nVkLr0GyJPI
 (2:55 showing spacing)
 -}
 
+import Data.List (intersperse)
+
 data Element = Dot | Dash | InterCodeSpace | InterCharSpace | InterWordSpace
   deriving (Eq, Show)
 type Elements = [Element]
@@ -28,8 +30,8 @@ isAllowedChar = (`elem` allowedChars)
 
 characterToElements :: Char -> Elements
 characterToElements ' ' = [InterWordSpace]
-characterToElements 'O' = [Dot,Dot,Dot]
-characterToElements 'S' = [Dash,Dash,Dash]
+characterToElements 'O' = intersperse InterCodeSpace [Dot,Dot,Dot]
+characterToElements 'S' = intersperse InterCodeSpace [Dash,Dash,Dash]
 
 --All signals based relative to a single beat (length of a "dot").
 dot :: Codes
