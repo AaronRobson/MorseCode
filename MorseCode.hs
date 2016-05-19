@@ -11,7 +11,7 @@ https://www.youtube.com/watch?v=nVkLr0GyJPI
 (2:55 showing spacing)
 -}
 
-data Element = Dot | Dash | InterCharSpace | InterWordSpace
+data Element = Dot | Dash | InterCodeSpace | InterCharSpace | InterWordSpace
   deriving (Eq, Show)
 type Elements = [Element]
 
@@ -53,6 +53,7 @@ elementToCharacter = undefined
 elementToCodes :: Element -> Codes
 elementToCodes Dot = dot
 elementToCodes Dash = dash
+elementToCodes InterCodeSpace = spacingInterElement
 elementToCodes InterCharSpace = spacingInterChar
 elementToCodes InterWordSpace = spacingInterWord
 
