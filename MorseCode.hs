@@ -32,19 +32,19 @@ characterToElements 'O' = [Dot,Dot,Dot]
 characterToElements 'S' = [Dash,Dash,Dash]
 
 --All signals based relative to a single beat (length of a "dot").
-dot :: [Bool]
+dot :: Codes
 dot = replicate 1 True
 
-dash :: [Bool]
+dash :: Codes
 dash = replicate 3 True
 
-spacingInterElement :: [Bool]
+spacingInterElement :: Codes
 spacingInterElement = replicate 1 False
 
-spacingInterChar :: [Bool]
+spacingInterChar :: Codes
 spacingInterChar = replicate 3 False
 
-spacingInterWord :: [Bool]
+spacingInterWord :: Codes
 spacingInterWord = replicate 7 False
 
 elementToCharacter :: Element -> Char
