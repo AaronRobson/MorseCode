@@ -32,6 +32,7 @@ characterToElements :: Char -> Elements
 characterToElements ' ' = [InterWordSpace]
 characterToElements 'O' = intersperse InterCodeSpace [Dot,Dot,Dot]
 characterToElements 'S' = intersperse InterCodeSpace [Dash,Dash,Dash]
+characterToElements x = error $ "Char is not defined in terms of Elements: " ++ [x]
 
 --All signals based relative to a single beat (length of a "dot").
 dot :: Codes
