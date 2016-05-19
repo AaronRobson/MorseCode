@@ -26,7 +26,7 @@ isAllowedChar = (`elem` allowedChars)
 --todo simplify with: http://book.realworldhaskell.org/read/using-typeclasses.html
 
 characterToElement :: Char -> Element
-characterToElement c = undefined
+characterToElement = undefined
 
 elementToCharacter :: Element -> Char
 elementToCharacter = undefined
@@ -54,10 +54,19 @@ elementsToMessage :: Elements -> String
 elementsToMessage = map elementToCharacter
 
 --All signals based relative to a single beat (length of a "dot").
+dot :: [Bool]
 dot = replicate 1 True
+
+dash :: [Bool]
 dash = replicate 3 True
+
+spacingBetweenElements :: [Bool]
 spacingBetweenElements = replicate 1 False
+
+spacingBetweenCharacters :: [Bool]
 spacingBetweenCharacters = replicate 3 False
+
+spacingBetweenWords :: [Bool]
 spacingBetweenWords = replicate 7 False
 
 main :: IO ()
