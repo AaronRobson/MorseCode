@@ -25,8 +25,8 @@ isAllowedChar = (`elem` allowedChars)
 
 --todo simplify with: http://book.realworldhaskell.org/read/using-typeclasses.html
 
-characterToElement :: Char -> Element
-characterToElement = undefined
+characterToElements :: Char -> Elements
+characterToElements = undefined
 
 elementToCharacter :: Element -> Char
 elementToCharacter = undefined
@@ -39,8 +39,8 @@ codeToElement = undefined
 
 --Based on the above.
 
-characterToCode :: Char -> Code
-characterToCode = elementToCode . characterToElement
+characterToCodes :: Char -> Codes
+characterToCodes = (map elementToCode) . characterToElements
 
 codeToCharacter :: Code -> Char
 codeToCharacter = elementToCharacter . codeToElement
@@ -48,7 +48,7 @@ codeToCharacter = elementToCharacter . codeToElement
 --Helper functions for lists of the units.
 
 charactersToElements :: String -> Elements
-charactersToElements = map characterToElement
+charactersToElements = concat . (map characterToElements)
 
 elementsToMessage :: Elements -> String
 elementsToMessage = map elementToCharacter
