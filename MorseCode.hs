@@ -23,6 +23,7 @@ allowedChars = ' ':['A'..'Z']
 isAllowedChar :: Char -> Bool
 isAllowedChar = (`elem` allowedChars)
 
+--todo simplify with: http://book.realworldhaskell.org/read/using-typeclasses.html
 
 characterToElement :: Char -> Element
 characterToElement c = undefined
