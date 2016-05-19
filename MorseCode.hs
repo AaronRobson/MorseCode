@@ -38,14 +38,14 @@ dot = replicate 1 True
 dash :: [Bool]
 dash = replicate 3 True
 
-spacingBetweenElements :: [Bool]
-spacingBetweenElements = replicate 1 False
+spacingInterElement :: [Bool]
+spacingInterElement = replicate 1 False
 
-spacingBetweenCharacters :: [Bool]
-spacingBetweenCharacters = replicate 3 False
+spacingInterChar :: [Bool]
+spacingInterChar = replicate 3 False
 
-spacingBetweenWords :: [Bool]
-spacingBetweenWords = replicate 7 False
+spacingInterWord :: [Bool]
+spacingInterWord = replicate 7 False
 
 elementToCharacter :: Element -> Char
 elementToCharacter = undefined
