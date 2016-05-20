@@ -74,13 +74,13 @@ codeToCharacter = elementToCharacter . codeToElement
 --Helper functions for lists of the units.
 
 charactersToElements :: String -> Elements
-charactersToElements = concat . (map characterToElements)
+charactersToElements = concat . (intersperse [InterCharSpace]) . (map characterToElements)
 
 elementsToMessage :: Elements -> String
 elementsToMessage = map elementToCharacter
 
 messageToCodes :: String -> Codes
-messageToCodes = concat . (map characterToCodes)
+messageToCodes = concat . (map elementToCodes) . charactersToElements
 
 main :: IO ()
 main = do
