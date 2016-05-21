@@ -12,6 +12,7 @@ https://www.youtube.com/watch?v=nVkLr0GyJPI
 -}
 
 import Data.List (intersperse)
+import Data.Char (toUpper)
 
 data Element = Dot | Dash | InterCodeSpace | InterCharSpace | InterWordSpace
   deriving (Eq, Show)
@@ -29,10 +30,14 @@ isAllowedChar = (`elem` allowedChars)
 --todo simplify with: http://book.realworldhaskell.org/read/using-typeclasses.html
 
 characterToElements :: Char -> Elements
-characterToElements ' ' = [InterWordSpace]
-characterToElements 'O' = intersperse InterCodeSpace [Dot,Dot,Dot]
-characterToElements 'S' = intersperse InterCodeSpace [Dash,Dash,Dash]
-characterToElements x = error $ "Char is not defined in terms of Elements: " ++ [x]
+characterToElements x = spaceOut $ simpleNoSpace (toUpper x)
+  where
+    spaceOut = intersperse InterCodeSpace
+    simpleNoSpace c
+        | c == ' ' = [InterWordSpace]
+        | c == 'O' = [Dot,Dot,Dot]
+        | c == 'S' = [Dash,Dash,Dash]
+        | otherwise = error $ "Char is not defined in terms of Elements: " ++ [x]
 
 --All signals based relative to a single beat (length of a "dot").
 dot :: Codes
